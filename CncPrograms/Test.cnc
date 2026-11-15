@@ -1,4 +1,5 @@
-G90
-G0 X38 Y80
-G1 X48 Y45 F600 E1.820
-G1 X65 Y58 E2.890
+def plc_global REAL gTemp.Par.SetTemperature as SetTemp
+N1 G90
+SetTemp=200
+N2 M109
+N3 G0 X38 Y80

@@ -1,6 +1,6 @@
 
 PROGRAM _INIT
-	gMotion.Par.ProgramName := 'Test.cnc';
+	gMotion.Par.ProgramName := 'Print.cnc';
 
 	(* Every axis homes with the mode from its configuration: direct, position 0 *)
 	FOR i := 0 TO 14 DO
@@ -28,8 +28,17 @@ PROGRAM _CYCLIC
 	CASE gMotion.Status.State OF
 
 		MOTION_INIT:
-			IF fbReadInfo.Valid AND fbReadInfo.ReadyForPowerOn THEN
-				gMotion.Status.State := MOTION_POWER_ON;
+			IF fbReadInfo.Valid THEN
+				IF fbReadInfo.PowerOn THEN
+					(* Group is still powered, e.g. after a program download *)
+					IF fbReadInfo.IsHomed THEN
+						gMotion.Status.State := MOTION_READY;
+					ELSE
+						gMotion.Status.State := MOTION_HOMING;
+					END_IF
+				ELSIF fbReadInfo.ReadyForPowerOn THEN
+					gMotion.Status.State := MOTION_POWER_ON;
+				END_IF
 			END_IF
 
 		MOTION_POWER_ON:
@@ -118,6 +127,17 @@ PROGRAM _CYCLIC
 			END_IF
 
 	END_CASE
+	
+	(* M109: set temperature AND wait UNTIL it is stable.
+		The PROGRAM writes the setpoint itself (SetTemp=...). *)
+	IF fbM109.Value THEN
+		gTemp.Cmd.HeaterOn := TRUE;
+	END_IF
+	
+	tonM109(IN := fbM109.Value, PT := T#200ms);
+	fbM109.Reset := fbM109.Value
+	AND ((tonM109.Q AND gTemp.Status.Stable) OR NOT gMotion.Status.Running);
+	fbM109(AxesGroup := ADR(gCncXY), Enable := TRUE, MFunction := 109);
 
 	(* Command function blocks, called once per cycle *)
 	fbPower(AxesGroup := ADR(gCncXY));

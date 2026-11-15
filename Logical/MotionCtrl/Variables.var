@@ -1,4 +1,6 @@
 VAR
+	tonM109 : TON;
+	fbM109 : MC_BR_MFunction;
 	fbReadStatus : MC_GroupReadStatus;
 	fbReadInfo : MC_BR_GroupReadInfo;
 	fbReadError : MC_GroupReadError;
