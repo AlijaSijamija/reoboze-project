@@ -18,4 +18,7 @@ VAR
 	i : USINT;
 	fbHome : ARRAY[0..2] OF MC_Home;
 	allHomed : BOOL;
+	fbPressureAdvance : PressureAdvance;
+	fbRTInfo : RTInfo;
+	cycleTime : REAL;
 END_VAR

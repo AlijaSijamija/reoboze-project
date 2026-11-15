@@ -71,12 +71,20 @@ TYPE
 		MotY : AxisValueType;
 		MotE : AxisValueType;
 		ECorrection : LREAL; (*Pressure advance correction added to E [mm]*)
+		ECommand : LREAL; (*Compensated E position sent to the motor [mm]*)
+		PaKEffective : REAL; (*K currently applied [s]*)
 		Coupled : BOOL; (*All motor axes follow their setpoints*)
 		Error : BOOL;
 		ErrorID : DINT;
 	END_STRUCT;
+	AxesParType : 	STRUCT 
+		PaEnable : BOOL; (*Pressure advance on/off*)
+		PaK : REAL; (*Pressure advance coefficient K [s]*)
+		PaKRampRate : REAL; (*Ramp rate for K changes [s/s]*)
+	END_STRUCT;
 	AxesType : 	STRUCT 
 		Cmd : AxesCmdType;
+		Par : AxesParType;
 		Status : AxesStatusType;
 	END_STRUCT;
 END_TYPE

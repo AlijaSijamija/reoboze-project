@@ -8,6 +8,9 @@ PROGRAM _INIT
 	motAxis[1] := ADR(gAxisMY);
 	motAxis[2] := ADR(gAxisME);
 	state := COUPLING_INIT;
+	fbRTInfo(enable := TRUE);
+	cycleTime := UDINT_TO_REAL(fbRTInfo.cycle_time) / 1000000.0;
+	gAxes.Par.PaKRampRate := 1.0;
 
 END_PROGRAM
 
@@ -37,11 +40,15 @@ PROGRAM _CYCLIC
 	gAxes.Status.MotE.Position := fbMotPos[2].CyclicPosition;
 	gAxes.Status.MotE.Velocity := fbMotVel[2].Velocity;
 
-	(* Motor setpoints. Phase 2 replaces the zero with K * nominal E velocity. *)
-	gAxes.Status.ECorrection := 0.0;
+	fbPressureAdvance(Enable := gAxes.Par.PaEnable, K := gAxes.Par.PaK,
+	Velocity := gAxes.Status.NomE.Velocity,
+	KRampRate := gAxes.Par.PaKRampRate, CycleTime := cycleTime);
+	gAxes.Status.ECorrection := fbPressureAdvance.Correction;
+	gAxes.Status.PaKEffective := fbPressureAdvance.KEffective;
 	setpoint[0] := gAxes.Status.NomX.Position;
 	setpoint[1] := gAxes.Status.NomY.Position;
 	setpoint[2] := gAxes.Status.NomE.Position + gAxes.Status.ECorrection;
+	gAxes.Status.ECommand := setpoint[2];
 
 	(* Any motor axis error stops the coupling *)
 	IF state <> COUPLING_ERROR AND state <> COUPLING_RESETTING THEN

@@ -8,5 +8,6 @@
     <Object Type="Program" Language="IEC">MotionCtrl</Object>
     <Object Type="Program" Language="IEC">TempCtrl</Object>
     <Object Type="Program" Language="IEC">AxisCoupling</Object>
+    <Object Type="Library" Language="IEC">PrintLib</Object>
   </Objects>
 </Package>
