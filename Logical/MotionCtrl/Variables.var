@@ -1,0 +1,11 @@
+VAR
+	fbReadStatus : MC_GroupReadStatus;
+	fbReadInfo : MC_BR_GroupReadInfo;
+	fbReadError : MC_GroupReadError;
+	fbPower : MC_BR_GroupPower;
+	fbHome : MC_BR_GroupHome_15;
+	fbMoveProgram : MC_BR_MoveProgram;
+	fbStop : MC_GroupStop;
+	fbReset : MC_GroupReset;
+	i : USINT;
+END_VAR

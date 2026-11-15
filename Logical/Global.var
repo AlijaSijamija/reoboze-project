@@ -1,8 +1,3 @@
-
 VAR
-
-END_VAR
-
-VAR CONSTANT
-
+	gMotion : MotionType; (*Interface to the motion control program*)
 END_VAR
