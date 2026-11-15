@@ -16,5 +16,7 @@
     <Object Type="Library" Language="binary" Description="[mapp Motion] Robotics and CNC path generator library">McPathGen</Object>
     <Object Type="Library" Language="binary" Description="[mapp Motion] Program interpreter library">McProgInt</Object>
     <Object Type="Library" Language="binary" Description="[mapp Motion] Purely virtual axis library">McPureVAx</Object>
+    <Object Type="Library" Language="Binary" Description="Temperature control">MpTemp</Object>
+    <Object Type="Library" Language="binary" Description="This library contains standard function blocks and functions for IEC 61131-3.">standard</Object>
   </Objects>
 </Package>

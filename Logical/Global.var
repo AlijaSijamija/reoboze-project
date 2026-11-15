@@ -1,3 +1,4 @@
 VAR
+	gTemp : TempType; (*Interface to the temperature control program*)
 	gMotion : MotionType; (*Interface to the motion control program*)
 END_VAR

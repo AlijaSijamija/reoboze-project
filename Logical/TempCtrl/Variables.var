@@ -1,0 +1,12 @@
+
+VAR
+	fbController : MpTempController;
+	controllerPar : MpTempControllerParType;
+	tonStable : TON;
+	tonTimeout : TON;
+	deviation : REAL;
+END_VAR
+
+VAR CONSTANT
+
+END_VAR

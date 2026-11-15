@@ -33,4 +33,27 @@ TYPE
 		Par : MotionParType;
 		Status : MotionStatusType;
 	END_STRUCT;
+	TempCmdType : 	STRUCT 
+		HeaterOn : BOOL; (*Switch temperature control on*)
+		ErrorReset : BOOL; (*Acknowledge an error*)
+	END_STRUCT;
+	TempParType : 	STRUCT 
+		SetTemperature : REAL; (*Setpoint [degC]*)
+		Tolerance : REAL; (*Allowed deviation for "stable" [degC]*)
+		StableTime : TIME; (*Time the temperature must stay in tolerance*)
+		Timeout : TIME; (*Maximum time to become stable*)
+	END_STRUCT;
+	TempStatusType : 	STRUCT 
+		ActualTemperature : REAL; (*Simulated measured temperature [degC]*)
+		Heating : BOOL; (*Controller is active*)
+		Stable : BOOL; (*Setpoint reached and stabilized*)
+		HeatUpTimeout : BOOL; (*Not stable within the timeout*)
+		Error : BOOL;
+		StatusID : DINT; (*Status of the mapp component*)
+	END_STRUCT;
+	TempType : 	STRUCT 
+		Cmd : TempCmdType;
+		Par : TempParType;
+		Status : TempStatusType;
+	END_STRUCT;
 END_TYPE
