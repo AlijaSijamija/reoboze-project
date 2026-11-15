@@ -7,5 +7,6 @@
     <Object Type="Package" Description="Global libraries">Libraries</Object>
     <Object Type="Program" Language="IEC">MotionCtrl</Object>
     <Object Type="Program" Language="IEC">TempCtrl</Object>
+    <Object Type="Program" Language="IEC">AxisCoupling</Object>
   </Objects>
 </Package>

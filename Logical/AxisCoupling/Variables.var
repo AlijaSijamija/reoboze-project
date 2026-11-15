@@ -1,0 +1,21 @@
+VAR
+	state : CouplingStateEnum;
+	nomAxis : ARRAY[0..2] OF UDINT; (*Addresses of the CNC axes*)
+	motAxis : ARRAY[0..2] OF UDINT; (*Addresses of the motor axes*)
+	fbNomPos : ARRAY[0..2] OF MC_BR_ReadCyclicPosition;
+	fbNomVel : ARRAY[0..2] OF MC_ReadActualVelocity;
+	fbMotPos : ARRAY[0..2] OF MC_BR_ReadCyclicPosition;
+	fbMotVel : ARRAY[0..2] OF MC_ReadActualVelocity;
+	fbMotStatus : ARRAY[0..2] OF MC_ReadStatus;
+	fbPower : ARRAY[0..2] OF MC_Power;
+	fbCyclic : ARRAY[0..2] OF MC_BR_MoveCyclicPosition;
+	fbReset : ARRAY[0..2] OF MC_Reset;
+	setpoint : ARRAY[0..2] OF LREAL;
+	nominalValid : BOOL;
+	allPowered : BOOL;
+	allCoupled : BOOL;
+	allReset : BOOL;
+	i : USINT;
+	fbHome : ARRAY[0..2] OF MC_Home;
+	allHomed : BOOL;
+END_VAR

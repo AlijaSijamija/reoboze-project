@@ -1,4 +1,5 @@
 VAR
+	gAxes : AxesType; (*Nominal and motor axis values, coupling status*)
 	gTemp : TempType; (*Interface to the temperature control program*)
 	gMotion : MotionType; (*Interface to the motion control program*)
 END_VAR

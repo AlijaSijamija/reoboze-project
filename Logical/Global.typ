@@ -56,4 +56,27 @@ TYPE
 		Par : TempParType;
 		Status : TempStatusType;
 	END_STRUCT;
+	AxisValueType : 	STRUCT 
+		Position : LREAL; (*[mm]*)
+		Velocity : REAL; (*[mm/s]*)
+	END_STRUCT;
+	AxesCmdType : 	STRUCT 
+		ErrorReset : BOOL; (*Acknowledge a motor axis error*)
+	END_STRUCT;
+	AxesStatusType : 	STRUCT 
+		NomX : AxisValueType; (*Nominal CNC values*)
+		NomY : AxisValueType;
+		NomE : AxisValueType;
+		MotX : AxisValueType; (*Simulated motor values*)
+		MotY : AxisValueType;
+		MotE : AxisValueType;
+		ECorrection : LREAL; (*Pressure advance correction added to E [mm]*)
+		Coupled : BOOL; (*All motor axes follow their setpoints*)
+		Error : BOOL;
+		ErrorID : DINT;
+	END_STRUCT;
+	AxesType : 	STRUCT 
+		Cmd : AxesCmdType;
+		Status : AxesStatusType;
+	END_STRUCT;
 END_TYPE

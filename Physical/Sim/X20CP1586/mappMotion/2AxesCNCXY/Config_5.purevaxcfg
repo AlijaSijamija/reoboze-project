@@ -46,4 +46,49 @@
       <Selector ID="ZeroVibrationFilter" Value="NotUsed" />
     </Group>
   </Element>
+  <Element ID="PureVAx_mX" Type="purevaxcfg">
+    <Property ID="TypeID" Value="PureVAxConfig" />
+    <Group ID="PureVAxis">
+      <Property ID="AxisReference" Value="gAxisMX" />
+      <Group ID="Homing">
+        <Selector ID="Mode" Value="Direct">
+          <Property ID="Position" Value="0.0" />
+          <Selector ID="ReferencePulse" Value="NotUsed" />
+        </Selector>
+        <Property ID="RestorePositionVariable" />
+      </Group>
+      <Selector ID="JerkFilter" Value="NotUsed" />
+      <Selector ID="ZeroVibrationFilter" Value="NotUsed" />
+    </Group>
+  </Element>
+  <Element ID="PureVAx_mY" Type="purevaxcfg">
+    <Property ID="TypeID" Value="PureVAxConfig" />
+    <Group ID="PureVAxis">
+      <Property ID="AxisReference" Value="gAxisMY" />
+      <Group ID="Homing">
+        <Selector ID="Mode" Value="Direct">
+          <Property ID="Position" Value="0.0" />
+          <Selector ID="ReferencePulse" Value="NotUsed" />
+        </Selector>
+        <Property ID="RestorePositionVariable" />
+      </Group>
+      <Selector ID="JerkFilter" Value="NotUsed" />
+      <Selector ID="ZeroVibrationFilter" Value="NotUsed" />
+    </Group>
+  </Element>
+  <Element ID="PureVAx_mE" Type="purevaxcfg">
+    <Property ID="TypeID" Value="PureVAxConfig" />
+    <Group ID="PureVAxis">
+      <Property ID="AxisReference" Value="gAxisME" />
+      <Group ID="Homing">
+        <Selector ID="Mode" Value="Direct">
+          <Property ID="Position" Value="0.0" />
+          <Selector ID="ReferencePulse" Value="NotUsed" />
+        </Selector>
+        <Property ID="RestorePositionVariable" />
+      </Group>
+      <Selector ID="JerkFilter" Value="NotUsed" />
+      <Selector ID="ZeroVibrationFilter" Value="NotUsed" />
+    </Group>
+  </Element>
 </Configuration>

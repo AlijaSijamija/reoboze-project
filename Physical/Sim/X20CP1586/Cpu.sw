@@ -4,6 +4,7 @@
   <TaskClass Name="Cyclic#1">
     <Task Name="TempCtrl" Source="TempCtrl.prg" Memory="UserROM" Language="IEC" Debugging="true" />
     <Task Name="MotionCtrl" Source="MotionCtrl.prg" Memory="UserROM" Language="IEC" Debugging="true" />
+    <Task Name="AxisCoupli" Source="AxisCoupling.prg" Memory="UserROM" Language="IEC" Debugging="true" />
   </TaskClass>
   <TaskClass Name="Cyclic#2" />
   <TaskClass Name="Cyclic#3" />
@@ -58,6 +59,7 @@
     <LibraryObject Name="McProgInt" Source="Libraries.McProgInt.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="McPureVAx" Source="Libraries.McPureVAx.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="MpTemp" Source="Libraries.MpTemp.lby" Memory="UserROM" Language="Binary" Debugging="true" />
+    <LibraryObject Name="standard" Source="Libraries.standard.lby" Memory="UserROM" Language="binary" Debugging="true" />
     <LibraryObject Name="asmem" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="sys_lib" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="arssl" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
@@ -72,6 +74,5 @@
     <LibraryObject Name="asepl" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="asarlog" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
     <LibraryObject Name="asieccon" Source="" Memory="UserROM" Language="Binary" Debugging="true" />
-    <LibraryObject Name="standard" Source="Libraries.standard.lby" Memory="UserROM" Language="binary" Debugging="true" />
   </Libraries>
 </SwConfiguration>
