@@ -54,7 +54,7 @@
           <Property ID="LimitCheckResolutionIsReadOnly" Value="0" />
           <Selector ID="LimitCheckResolution" Value="UserDefinedTime">
             <Property ID="TimeIsReadOnly" Value="0" />
-            <Property ID="Time" Value="0.01" />
+            <Property ID="Time" Value="0.015" />
           </Selector>
           <Selector ID="BufferTime" Value="UserDefinedTime">
             <Property ID="Time" Value="0.1" />

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="4.9"?>
+<Configuration>
+  <Element ID="NewTraceConfig" Type="tracecfg">
+    <Property ID="mappCockpitTypeID" Value="TraceCfg" />
+    <Group ID="TrcTimingSettings">
+      <Property ID="TrcTotalRecordingTime" Value="10.0" />
+      <Property ID="TrcTriggerOffsetTime" Value="-0.5" />
+      <Selector ID="TrcPVTaskClass" Value="TrcCyclic_1">
+        <Property ID="TrcPLCSampleTime" Value="0.0" />
+      </Selector>
+      <Property ID="TrcACOPOSSampleTime" Value="0.0004" />
+    </Group>
+    <Group ID="TrcTriggerSettings">
+      <Group ID="TrcTriggerCondition[1]">
+        <Property ID="TrcTriggerDataPoint" Value="::gAxes.Status.NomE.Velocity" />
+        <Selector ID="TrcTriggerConditionSelection" Value="coTRACE_GOES_ABOVE_WINDOW_EVENT">
+          <Property ID="TrcThreshold" Value="0.01" />
+          <Property ID="TrcWindow" Value="0.0" />
+        </Selector>
+      </Group>
+    </Group>
+    <Group ID="TrcErrorHandlingSettings">
+      <Property ID="TrcErrorReactionSelection" Value="TrcarCONTINUE" />
+    </Group>
+    <Group ID="TrcRecordedSettings">
+      <Property ID="TrcRecordedDataName" />
+    </Group>
+    <Group ID="TrcDataPointList">
+      <Property ID="TrcDataPoint[1]" Value="::gAxes.Status.NomX.Position" />
+      <Property ID="TrcDataPoint[2]" Value="::gAxes.Status.NomX.Velocity" />
+      <Property ID="TrcDataPoint[3]" Value="::gAxes.Status.NomY.Position" />
+      <Property ID="TrcDataPoint[4]" Value="::gAxes.Status.NomY.Velocity" />
+      <Property ID="TrcDataPoint[5]" Value="::gAxes.Status.NomE.Position" />
+      <Property ID="TrcDataPoint[6]" Value="::gAxes.Status.NomE.Velocity" />
+      <Property ID="TrcDataPoint[7]" Value="::gAxes.Status.MotX.Position" />
+      <Property ID="TrcDataPoint[8]" Value="::gAxes.Status.MotX.Velocity" />
+      <Property ID="TrcDataPoint[9]" Value="::gAxes.Status.MotY.Position" />
+      <Property ID="TrcDataPoint[10]" Value="::gAxes.Status.MotY.Velocity" />
+      <Property ID="TrcDataPoint[11]" Value="::gAxes.Status.MotE.Position" />
+      <Property ID="TrcDataPoint[12]" Value="::gAxes.Status.MotE.Velocity" />
+      <Property ID="TrcDataPoint[13]" Value="::gAxes.Status.ECommand" />
+      <Property ID="TrcDataPoint[14]" Value="::gAxes.Status.ECorrection" />
+      <Property ID="TrcDataPoint[15]" Value="::gAxes.Status.PaKEffective" />
+    </Group>
+  </Element>
+</Configuration>
