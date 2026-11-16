@@ -35,6 +35,8 @@ TYPE
 		Error : BOOL;
 		ErrorID : DINT; (*Error number of the failed command or group*)
 		ErrorSource : MotionErrorSourceEnum; (*Component that caused the error*)
+		StateText : STRING[40]; (*State in plain text for the operator page*)
+		ErrorText : STRING[80]; (*Active error in plain text*)
 	END_STRUCT;
 	MotionType : 	STRUCT 
 		Cmd : MotionCmdType;

@@ -9,5 +9,6 @@
     <Object Type="Program" Language="IEC">TempCtrl</Object>
     <Object Type="Program" Language="IEC">AxisCoupling</Object>
     <Object Type="Library" Language="IEC">PrintLib</Object>
+    <Object Type="Package">mappView</Object>
   </Objects>
 </Package>

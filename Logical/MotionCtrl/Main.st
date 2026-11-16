@@ -193,6 +193,36 @@ PROGRAM _CYCLIC
 	OR (gMotion.Status.State = MOTION_RUNNING);
 	gMotion.Status.Error := (gMotion.Status.State = MOTION_ERROR);
 
+	(* Plain texts for the operator page *)
+	CASE gMotion.Status.State OF
+		MOTION_INIT:		gMotion.Status.StateText := 'Initializing';
+		MOTION_POWER_ON:	gMotion.Status.StateText := 'Switching on';
+		MOTION_HOMING:		gMotion.Status.StateText := 'Homing';
+		MOTION_READY:
+			IF gMotion.Status.Done THEN
+				gMotion.Status.StateText := 'Ready - program completed';
+			ELSE
+				gMotion.Status.StateText := 'Ready';
+			END_IF
+		MOTION_STARTING:	gMotion.Status.StateText := 'Starting program';
+		MOTION_RUNNING:
+			IF fbM109.Value THEN
+				gMotion.Status.StateText := 'Heating - waiting for temperature';
+			ELSE
+				gMotion.Status.StateText := 'Printing';
+			END_IF
+		MOTION_STOPPING:	gMotion.Status.StateText := 'Stopping';
+		MOTION_ERROR:		gMotion.Status.StateText := 'Error';
+		MOTION_RESETTING:	gMotion.Status.StateText := 'Resetting';
+	END_CASE
+
+	CASE gMotion.Status.ErrorSource OF
+		MOTION_ERR_NONE:		gMotion.Status.ErrorText := '';
+		MOTION_ERR_GROUP:		gMotion.Status.ErrorText := 'CNC axes group or program error';
+		MOTION_ERR_TEMPERATURE:	gMotion.Status.ErrorText := 'Temperature error or heat-up timeout';
+		MOTION_ERR_MOTOR_AXES:	gMotion.Status.ErrorText := 'Motor axis error';
+	END_CASE
+
 	(* Commands are one-shot: consumed every cycle *)
 	gMotion.Cmd.Start := FALSE;
 	gMotion.Cmd.Stop := FALSE;

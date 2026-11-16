@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BindingsSet id="contentMain_binding" xmlns="http://www.br-automation.com/iat2015/binding/engineering/v2"
+  xmlns:bt="http://www.br-automation.com/iat2015/bindingListTypes/engineering/v2"
+  xmlns:be="http://www.br-automation.com/iat2015/bindingListEmbedded/engineering/v2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Bindings>
+    <Binding mode="oneWayToSource">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gMotion.Cmd.Start" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="btnStart" attribute="value" />
+    </Binding>
+    <Binding mode="oneWayToSource">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gMotion.Cmd.Stop" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="btnStop" attribute="value" />
+    </Binding>
+    <Binding mode="oneWayToSource">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gMotion.Cmd.ErrorReset" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="btnReset" attribute="value" />
+    </Binding>
+    <Binding mode="oneWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gMotion.Status.StateText" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="txtState" attribute="value" />
+    </Binding>
+    <Binding mode="oneWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gMotion.Status.ErrorText" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="txtError" attribute="value" />
+    </Binding>
+    <Binding mode="oneWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gAxes.Status.NomX.Position" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="numNomX" attribute="value" />
+    </Binding>
+    <Binding mode="oneWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gAxes.Status.MotX.Position" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="numMotX" attribute="value" />
+    </Binding>
+    <Binding mode="oneWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gAxes.Status.NomY.Position" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="numNomY" attribute="value" />
+    </Binding>
+    <Binding mode="oneWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gAxes.Status.MotY.Position" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="numMotY" attribute="value" />
+    </Binding>
+    <Binding mode="oneWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gAxes.Status.NomE.Position" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="numNomE" attribute="value" />
+    </Binding>
+    <Binding mode="oneWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gAxes.Status.MotE.Position" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="numMotE" attribute="value" />
+    </Binding>
+    <Binding mode="oneWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gTemp.Par.SetTemperature" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="numTempSet" attribute="value" />
+    </Binding>
+    <Binding mode="oneWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gTemp.Status.ActualTemperature" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="numTempAct" attribute="value" />
+    </Binding>
+    <Binding mode="twoWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gAxes.Par.PaEnable" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="swPaEnable" attribute="value" />
+    </Binding>
+    <Binding mode="twoWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gAxes.Par.PaK" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="numPaK" attribute="value" />
+    </Binding>
+    <Binding mode="oneWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gAxes.Status.PaKEffective" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="numPaKEff" attribute="value" />
+    </Binding>
+    <Binding mode="oneWay">
+      <Source xsi:type="opcUa" refId="::AsGlobalPV:gAxes.Status.ECorrection" attribute="value" />
+      <Target xsi:type="brease" contentRefId="contentMain" widgetRefId="numPaCorr" attribute="value" />
+    </Binding>
+  </Bindings>
+</BindingsSet>
