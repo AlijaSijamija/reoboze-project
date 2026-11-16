@@ -67,6 +67,15 @@ PROGRAM _CYCLIC
 			END_IF
 		END_FOR
 	END_IF
+	
+	(* Test aid: force a motor axis error *)
+	IF gAxes.Cmd.SimulateError THEN
+		IF state = COUPLING_ACTIVE THEN
+			gAxes.Status.ErrorID := -1;
+			state := COUPLING_ERROR;
+		END_IF
+		gAxes.Cmd.SimulateError := FALSE;
+	END_IF
 
 	CASE state OF
 

@@ -12,6 +12,13 @@ TYPE
 		MOTION_ERROR,
 		MOTION_RESETTING
 		);
+	MotionErrorSourceEnum : 
+		(
+		MOTION_ERR_NONE,
+		MOTION_ERR_GROUP, (*CNC axes group or program*)
+		MOTION_ERR_TEMPERATURE,
+		MOTION_ERR_MOTOR_AXES
+		);
 	MotionCmdType : 	STRUCT 
 		Start : BOOL; (*Start the G-code program*)
 		Stop : BOOL; (*Stop the running program*)
@@ -27,6 +34,7 @@ TYPE
 		Done : BOOL; (*Last program finished normally*)
 		Error : BOOL;
 		ErrorID : DINT; (*Error number of the failed command or group*)
+		ErrorSource : MotionErrorSourceEnum; (*Component that caused the error*)
 	END_STRUCT;
 	MotionType : 	STRUCT 
 		Cmd : MotionCmdType;
@@ -62,6 +70,7 @@ TYPE
 	END_STRUCT;
 	AxesCmdType : 	STRUCT 
 		ErrorReset : BOOL; (*Acknowledge a motor axis error*)
+		SimulateError : BOOL; (*Test aid: force a motor axis error*)
 	END_STRUCT;
 	AxesStatusType : 	STRUCT 
 		NomX : AxisValueType; (*Nominal CNC values*)

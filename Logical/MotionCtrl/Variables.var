@@ -1,4 +1,5 @@
 VAR
+	stopToError : BOOL; (*The running stop was caused by a component error*)
 	tonM109 : TON;
 	fbM109 : MC_BR_MFunction;
 	fbReadStatus : MC_GroupReadStatus;

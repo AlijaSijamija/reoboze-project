@@ -24,6 +24,30 @@ PROGRAM _CYCLIC
 		gMotion.Status.ErrorID := fbReadError.GroupErrorID;
 		gMotion.Status.State := MOTION_ERROR;
 	END_IF
+	
+	(* One reset command acknowledges all components *)
+	IF gMotion.Cmd.ErrorReset THEN
+		gTemp.Cmd.ErrorReset := TRUE;
+		gAxes.Cmd.ErrorReset := TRUE;
+	END_IF
+
+	(* A component error during a program run stops the motion *)
+	IF (gMotion.Status.State = MOTION_STARTING) OR (gMotion.Status.State = MOTION_RUNNING) THEN
+		IF gTemp.Status.Error THEN
+			gMotion.Status.ErrorSource := MOTION_ERR_TEMPERATURE;
+			gMotion.Status.ErrorID := gTemp.Status.StatusID;
+			stopToError := TRUE;
+		ELSIF gAxes.Status.Error THEN
+			gMotion.Status.ErrorSource := MOTION_ERR_MOTOR_AXES;
+			gMotion.Status.ErrorID := gAxes.Status.ErrorID;
+			stopToError := TRUE;
+		END_IF
+		IF stopToError THEN
+			fbMoveProgram.Execute := FALSE;
+			fbStop.Execute := TRUE;
+			gMotion.Status.State := MOTION_STOPPING;
+		END_IF
+	END_IF
 
 	CASE gMotion.Status.State OF
 
@@ -66,7 +90,7 @@ PROGRAM _CYCLIC
 			END_IF
 
 		MOTION_READY:
-			IF gMotion.Cmd.Start THEN
+			IF gMotion.Cmd.Start AND gAxes.Status.Coupled AND NOT gTemp.Status.Error THEN
 				gMotion.Status.Done := FALSE;
 				fbMoveProgram.Name := gMotion.Par.ProgramName;
 				fbMoveProgram.Execute := TRUE;
@@ -99,20 +123,36 @@ PROGRAM _CYCLIC
 			IF fbStop.Error THEN
 				gMotion.Status.ErrorID := fbStop.ErrorID;
 				fbStop.Execute := FALSE;
+				stopToError := FALSE;
 				gMotion.Status.State := MOTION_ERROR;
 			ELSIF fbStop.Done THEN
 				fbStop.Execute := FALSE;
-				gMotion.Status.State := MOTION_READY;
+				IF stopToError THEN
+					stopToError := FALSE;
+					gMotion.Status.State := MOTION_ERROR;
+				ELSE
+					gMotion.Status.State := MOTION_READY;
+				END_IF
 			END_IF
 
 		MOTION_ERROR:
+			IF gMotion.Status.ErrorSource = MOTION_ERR_NONE THEN
+				gMotion.Status.ErrorSource := MOTION_ERR_GROUP;
+			END_IF
 			fbPower.Enable := FALSE;
 			fbHome.Execute := FALSE;
 			fbMoveProgram.Execute := FALSE;
 			fbStop.Execute := FALSE;
 			IF gMotion.Cmd.ErrorReset THEN
-				fbReset.Execute := TRUE;
-				gMotion.Status.State := MOTION_RESETTING;
+				IF fbReadStatus.GroupErrorStop THEN
+					fbReset.Execute := TRUE;
+					gMotion.Status.State := MOTION_RESETTING;
+				ELSE
+					(* Error came from another component: the group needs no reset *)
+					gMotion.Status.ErrorID := 0;
+					gMotion.Status.ErrorSource := MOTION_ERR_NONE;
+					gMotion.Status.State := MOTION_INIT;
+				END_IF
 			END_IF
 
 		MOTION_RESETTING:
@@ -123,6 +163,7 @@ PROGRAM _CYCLIC
 			ELSIF fbReset.Done THEN
 				fbReset.Execute := FALSE;
 				gMotion.Status.ErrorID := 0;
+				gMotion.Status.ErrorSource := MOTION_ERR_NONE;
 				gMotion.Status.State := MOTION_INIT;
 			END_IF
 
